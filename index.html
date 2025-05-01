@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      CodeTube - Programming Video Resources by Soumendu Bhattacherjee
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Custom CSS for creative backgrounds */
+      .page-home {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      .page-languages {
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      .page-resources {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover:after {
+        width: 100%;
+      }
+
+      .active:after {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black bg-opacity-70 z-50 backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <span
+                class="text-xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent"
+              >
+                <i class="fas fa-code mr-2"></i>CodeTube
+              </span>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a
+                href="#"
+                onclick="showPage('home')"
+                class="nav-link active px-3 py-2 rounded-md text-sm font-medium"
+                >Home</a
+              >
+              <a
+                href="#"
+                onclick="showPage('languages')"
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
+                >Languages</a
+              >
+              <a
+                href="#"
+                onclick="showPage('resources')"
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
+                >Resources</a
+              >
+            </div>
+          </div>
+          <div class="md:hidden">
+            <button
+              class="mobile-menu-button p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu hidden md:hidden bg-black bg-opacity-90">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a
+            href="#"
+            onclick="showPage('home')"
+            class="block px-3 py-2 rounded-md text-base font-medium"
+            >Home</a
+          >
+          <a
+            href="#"
+            onclick="showPage('languages')"
+            class="block px-3 py-2 rounded-md text-base font-medium"
+            >Languages</a
+          >
+          <a
+            href="#"
+            onclick="showPage('resources')"
+            class="block px-3 py-2 rounded-md text-base font-medium"
+            >Resources</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Pages -->
+    <div id="pages-container" class="pt-16 min-h-screen">
+      <!-- Home Page -->
+      <div id="home" class="page-home min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+              <span
+                class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500"
+              >
+                Learn to Code
+              </span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+              Access curated YouTube video resources for popular programming
+              languages. Start your coding journey today!
+            </p>
+            <button
+              onclick="showPage('languages')"
+              class="bg-white text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition duration-300 transform hover:scale-105"
+            >
+              Explore Languages <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+
+          <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="card-hover bg-white bg-opacity-10 p-6 rounded-xl backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="text-center">
+                <i
+                  class="fas fa-graduation-cap text-4xl mb-4 text-purple-300"
+                ></i>
+                <h3 class="text-xl font-bold mb-2">Structured Learning</h3>
+                <p class="text-gray-200">
+                  Follow our carefully curated playlists to learn step by step.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="card-hover bg-white bg-opacity-10 p-6 rounded-xl backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="text-center">
+                <i class="fas fa-fire text-4xl mb-4 text-red-300"></i>
+                <h3 class="text-xl font-bold mb-2">Latest Content</h3>
+                <p class="text-gray-200">
+                  We regularly update with the newest and most relevant
+                  tutorials.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="card-hover bg-white bg-opacity-10 p-6 rounded-xl backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="text-center">
+                <i class="fas fa-users text-4xl mb-4 text-blue-300"></i>
+                <h3 class="text-xl font-bold mb-2">Community Driven</h3>
+                <p class="text-gray-200">
+                  Suggestions from developers worldwide help shape our
+                  collection.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages Page -->
+      <div
+        id="languages"
+        class="page-languages min-h-screen py-12 px-4 sm:px-6 lg:px-8 hidden"
+      >
+        <div class="max-w-7xl mx-auto">
+          <h1 class="text-3xl md:text-5xl font-bold mb-8 text-center">
+            <span
+              class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-red-500"
+            >
+              Programming Languages
+            </span>
+          </h1>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- JavaScript Card -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fab fa-js-square text-4xl text-yellow-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">JavaScript</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  The language of the web. Learn modern JavaScript frameworks
+                  and concepts.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=PkZNo7MFNFg"
+                    target="_blank"
+                    class="block bg-yellow-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> JavaScript Full Course
+                    (2023)
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=hdI2bqOjy3c"
+                    target="_blank"
+                    class="block bg-yellow-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> JavaScript Crash Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=DHvZLI7Db8E"
+                    target="_blank"
+                    class="block bg-yellow-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> JavaScript Promises
+                    Explained
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Python Card -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fab fa-python text-4xl text-blue-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">Python</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Versatile and powerful, Python is great for beginners and
+                  experts alike.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=rfscVS0vtbw"
+                    target="_blank"
+                    class="block bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Python Full Course for
+                    Beginners
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=JJmcL1N2KQs"
+                    target="_blank"
+                    class="block bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Python Django Tutorial
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=daefaLgNkw0"
+                    target="_blank"
+                    class="block bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Python for Data Science
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Java Card -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fab fa-java text-4xl text-red-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">Java</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  The enterprise favorite. Learn Java for backend development
+                  and Android apps.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=eIrMbAQSU34"
+                    target="_blank"
+                    class="block bg-red-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Java Full Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=grEKMHGYyns"
+                    target="_blank"
+                    class="block bg-red-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Java OOP Concepts
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=V1vZfdoEc8E"
+                    target="_blank"
+                    class="block bg-red-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Java Spring Boot
+                    Tutorial
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- C++ Card -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-file-code text-4xl text-purple-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">C++</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  High-performance language for game development and system
+                  programming.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=vLnPwxZdW4Y"
+                    target="_blank"
+                    class="block bg-purple-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> C++ Full Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=wN0x9eZLix4"
+                    target="_blank"
+                    class="block bg-purple-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> C++ OOP Tutorial
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=Rub-JsjMhWY"
+                    target="_blank"
+                    class="block bg-purple-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> C++ for Game Dev
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Go Card -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fab fa-golang text-4xl text-cyan-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">Go</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Efficient, statically typed language developed by Google for
+                  modern software.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=YS4e4q9oBaU"
+                    target="_blank"
+                    class="block bg-cyan-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Go Full Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=yyUHQIec83I"
+                    target="_blank"
+                    class="block bg-cyan-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Go for Beginners
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=LvgVSSpwND8"
+                    target="_blank"
+                    class="block bg-cyan-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Go Web Development
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rust Card -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-cog text-4xl text-orange-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">Rust</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Memory-safe language that guarantees thread safety and
+                  prevents segfaults.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=zF34dRivLOw"
+                    target="_blank"
+                    class="block bg-orange-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Rust Full Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=5C_HPTJg5ek"
+                    target="_blank"
+                    class="block bg-orange-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Rust for Beginners
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=JCtmIUXqy_0"
+                    target="_blank"
+                    class="block bg-orange-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Rust WebAssembly
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources Page -->
+      <div
+        id="resources"
+        class="page-resources min-h-screen py-12 px-4 sm:px-6 lg:px-8 hidden"
+      >
+        <div class="max-w-7xl mx-auto">
+          <h1 class="text-3xl md:text-5xl font-bold mb-8 text-center">
+            <span
+              class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500"
+            >
+              Additional Resources
+            </span>
+          </h1>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Web Development -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-globe text-4xl text-blue-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">Web Development</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Master the complete web development stack with these
+                  resources.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=1Rs2ND1ryYc"
+                    target="_blank"
+                    class="block bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Full Stack Web
+                    Development
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=3PHXvlpOkf4"
+                    target="_blank"
+                    class="block bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> React.js Crash Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=4UZrsTqkcW4"
+                    target="_blank"
+                    class="block bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Node.js & Express
+                    Tutorial
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Development -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-mobile-alt text-4xl text-green-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">Mobile Development</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Build apps for iOS and Android with these comprehensive
+                  guides.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=6t7d6fV66h8"
+                    target="_blank"
+                    class="block bg-green-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Flutter Crash Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=0kL6nhutjQ8"
+                    target="_blank"
+                    class="block bg-green-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> React Native Tutorial
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=BBWyXo-3JGQ"
+                    target="_blank"
+                    class="block bg-green-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> SwiftUI Basics
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Science -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i
+                    class="fas fa-chart-line text-4xl text-purple-400 mr-4"
+                  ></i>
+                  <h3 class="text-2xl font-bold">Data Science</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Learn data analysis, machine learning, and visualization
+                  techniques.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=JcI5Vnw0b2c"
+                    target="_blank"
+                    class="block bg-purple-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Python for Data Science
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=7eh4d6sabA0"
+                    target="_blank"
+                    class="block bg-purple-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Machine Learning Basics
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=3j5L9DlovB4"
+                    target="_blank"
+                    class="block bg-purple-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> TensorFlow Tutorial
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- DevOps -->
+            <div
+              class="card-hover bg-white bg-opacity-10 rounded-xl overflow-hidden backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-server text-4xl text-red-400 mr-4"></i>
+                  <h3 class="text-2xl font-bold">DevOps & Cloud</h3>
+                </div>
+                <p class="text-gray-200 mb-4">
+                  Master deployment, containers, and cloud infrastructure.
+                </p>
+                <div class="space-y-3">
+                  <a
+                    href="https://www.youtube.com/watch?v=9UZI2QvUo5A"
+                    target="_blank"
+                    class="block bg-red-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Docker Crash Course
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=R8_veQiYBjI"
+                    target="_blank"
+                    class="block bg-red-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> Kubernetes Explained
+                  </a>
+                  <a
+                    href="https://www.youtube.com/watch?v=Ia-UEYYR44s"
+                    target="_blank"
+                    class="block bg-red-500 bg-opacity-30 hover:bg-opacity-50 text-white py-2 px-4 rounded-lg transition"
+                  >
+                    <i class="fab fa-youtube mr-2"></i> AWS for Beginners
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="mt-12 bg-white bg-opacity-10 rounded-xl p-8 backdrop-filter backdrop-blur-lg border border-white border-opacity-20"
+          >
+            <h2 class="text-2xl font-bold mb-4 text-center">
+              Submit Your Suggestions
+            </h2>
+            <p class="text-center mb-6">
+              Have a great YouTube tutorial to recommend? Help us improve our
+              collection!
+            </p>
+            <form class="max-w-lg mx-auto">
+              <div class="mb-4">
+                <input
+                  type="text"
+                  placeholder="Video Title"
+                  class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div class="mb-4">
+                <input
+                  type="url"
+                  placeholder="YouTube URL"
+                  class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div class="mb-4">
+                <select
+                  class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option>Select Category</option>
+                  <option>JavaScript</option>
+                  <option>Python</option>
+                  <option>Web Development</option>
+                  <option>Data Science</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
+              >
+                Submit Suggestion
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-70 text-white py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">
+              <span
+                class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent"
+              >
+                <i class="fas fa-code mr-2"></i>CodeTube
+              </span>
+            </h3>
+            <p class="text-gray-300">
+              Your one-stop resource for programming video tutorials from
+              YouTube's best educators.
+            </p>
+            <p>Designed by Soumendu Bhattacherjee</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  onclick="showPage('home')"
+                  class="text-gray-300 hover:text-white transition"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="showPage('languages')"
+                  class="text-gray-300 hover:text-white transition"
+                  >Languages</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="showPage('resources')"
+                  class="text-gray-300 hover:text-white transition"
+                  >Resources</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a
+                href="https://x.com/SWAGGUY1105CODM"
+                class="text-gray-300 hover:text-blue-400 transition"
+                ><i class="fab fa-twitter text-2xl"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/swag_turns_demure/"
+                class="text-gray-300 hover:text-pink-500 transition"
+                ><i class="fab fa-instagram text-2xl"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/THATStheSWAGGUY"
+                class="text-gray-300 hover:text-blue-600 transition"
+                ><i class="fab fa-facebook text-2xl"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@52_soumendubhattacherjee_x5"
+                class="text-gray-300 hover:text-red-500 transition"
+                ><i class="fab fa-youtube text-2xl"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400"
+        >
+          <p>&copy; 2025 CodeTube. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Page navigation
+      function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll("#pages-container > div").forEach((page) => {
+          page.classList.add("hidden");
+        });
+
+        // Show selected page
+        document.getElementById(pageId).classList.remove("hidden");
+
+        // Update active nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        // Find the clicked link and make it active
+        const links = document.querySelectorAll(".nav-link");
+        for (let link of links) {
+          if (
+            link.textContent.trim().toLowerCase() === pageId ||
+            (pageId === "home" &&
+              link.textContent.trim().toLowerCase() === "home")
+          ) {
+            link.classList.add("active");
+            break;
+          }
+        }
+      }
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.querySelector(".mobile-menu-button");
+      const mobileMenu = document.querySelector(".mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !mobileMenu.contains(e.target) &&
+          !mobileMenuButton.contains(e.target)
+        ) {
+          mobileMenu.classList.add("hidden");
+        }
+      });
+
+      // Initialize - show home page
+      document.addEventListener("DOMContentLoaded", () => {
+        showPage("home");
+      });
+    </script>
+  </body>
+</html>
